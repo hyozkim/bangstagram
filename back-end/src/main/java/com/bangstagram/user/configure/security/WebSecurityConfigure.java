@@ -15,6 +15,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 /***
  * author: Hyo-Jin Kim
@@ -58,6 +59,11 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public LogoutSuccessHandler logoutSuccessHandler() {
+        return new JwtLogoutSuccessHandler();
+    }
+
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -85,7 +91,12 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
                     .anyRequest().permitAll()
                     .and()
                 .formLogin()
-                    .disable();
+                    .disable()
+                .logout()
+                    .logoutUrl("/users/logout")
+                    .deleteCookies("JSESSIONID")
+                    .logoutSuccessUrl("/login.html")
+                    .logoutSuccessHandler(logoutSuccessHandler());
          http
                 .addFilterBefore(jwtAuthenticationTokenFilter(authenticationManagerBean(), jwt()), UsernamePasswordAuthenticationFilter.class);
     }

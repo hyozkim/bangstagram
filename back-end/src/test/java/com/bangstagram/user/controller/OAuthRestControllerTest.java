@@ -1,13 +1,10 @@
 package com.bangstagram.user.controller;
 
 import com.bangstagram.user.configure.security.JWT;
-import com.bangstagram.user.controller.dto.request.JoinRequestDto;
 import com.bangstagram.user.controller.dto.response.AuthResponseDto;
-import com.bangstagram.user.controller.dto.response.JoinResponseDto;
 import com.bangstagram.user.domain.model.user.User;
 import com.bangstagram.user.service.OAuthKakaoService;
 import com.bangstagram.user.service.OAuthNaverService;
-import com.bangstagram.user.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
