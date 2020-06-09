@@ -2,8 +2,10 @@ package com.bangstagram.user.controller;
 
 import com.bangstagram.user.configure.security.JwtAuthenticationToken;
 import com.bangstagram.user.controller.dto.request.AuthRequestDto;
+import com.bangstagram.user.controller.dto.request.CheckEmailRequestDto;
 import com.bangstagram.user.controller.dto.request.JoinRequestDto;
 import com.bangstagram.user.controller.dto.response.AuthResponseDto;
+import com.bangstagram.user.controller.dto.response.CheckEmailResponseDto;
 import com.bangstagram.user.controller.dto.response.JoinResponseDto;
 import com.bangstagram.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,10 +37,10 @@ public class UserRestController {
     }
 
     @PostMapping("/users/exists")
-    public boolean checkUserExists(@RequestBody Map<String, String> request) {
-        log.info("[Users Exists]: {}", request.get("email"));
+    public CheckEmailResponseDto checkUserExists(@RequestBody @Valid CheckEmailRequestDto request) {
+        log.info("[Users Exists]: {}", request.getEmail());
 
-        return userService.existsByEmail(request.get("email"));
+        return userService.existsByEmail(request.getEmail());
     }
 
     @PostMapping("/users/join")
