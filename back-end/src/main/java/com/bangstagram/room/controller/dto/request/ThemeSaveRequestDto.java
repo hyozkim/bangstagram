@@ -12,8 +12,7 @@ public class ThemeSaveRequestDto {
     @NotBlank
     private String title;
 
-    @NotNull
-    private Long roomId;
+    @NotNull private Long roomId;
 
     private String imgSrc;
     private String description;
@@ -24,6 +23,7 @@ public class ThemeSaveRequestDto {
 
     @Builder
     public ThemeSaveRequestDto(@NotBlank String title, @NotNull Long roomId, String imgSrc, String description, String genre) {
+    //public ThemeSaveRequestDto(@NotBlank String title, String imgSrc, String description, String genre) {
         this.title = title;
         this.roomId = roomId;
         this.imgSrc = imgSrc;

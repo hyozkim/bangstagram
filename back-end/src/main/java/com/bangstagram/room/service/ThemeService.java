@@ -38,10 +38,14 @@ public class ThemeService {
     @Transactional
     public ThemeResponseDto createTheme(ThemeSaveRequestDto requestDto) {
         log.info("[create Theme] room_id={}", requestDto.getRoomId());
-        Theme theme = themeRepository.save(requestDto.toEntity());
         Room room = roomRepository.findById(requestDto.getRoomId()).orElseThrow(() ->
                 new DoNotExistException("방탈출 정보가 없습니다."));
-        room.addTheme(theme);
+
+        Theme theme = requestDto.toEntity();
+        theme.changeTheme(room);
+        //room.addTheme(theme);
+
+        themeRepository.save(theme);
 
         return ThemeResponseDto.builder()
                 .id(theme.getId())
