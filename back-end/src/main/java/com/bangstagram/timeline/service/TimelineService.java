@@ -47,7 +47,7 @@ public class TimelineService {
                 .id(newTimeline.getId())
                 .title(newTimeline.getTitle())
                 .body(newTimeline.getBody())
-                //.userId(newTimeline.getUserId())
+                .user(newTimeline.getUser())
                 .roomId(newTimeline.getRoomId())
                 .createdAt(newTimeline.getCreatedAt())
                 .build();
@@ -65,7 +65,7 @@ public class TimelineService {
                 .title(foundTimeline.getTitle())
                 .body(foundTimeline.getBody())
                 .createdAt(foundTimeline.getCreatedAt())
-                //.userId(foundTimeline.getUserId())
+                .user(foundTimeline.getUser())
                 .roomId(foundTimeline.getRoomId())
                 .build();
     }

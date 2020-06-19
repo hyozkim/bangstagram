@@ -23,7 +23,7 @@ public class Timeline extends CommonEntity {
 
     private String body;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
 
