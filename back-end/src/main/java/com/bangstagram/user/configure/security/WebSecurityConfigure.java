@@ -81,6 +81,7 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
                     .antMatchers("/oauth/naver").permitAll()
                     .antMatchers("/oauth/kakao").permitAll()
                     .antMatchers("/rooms/**").permitAll()
+                    .antMatchers("/docs/**").permitAll()
                     .antMatchers("/**").hasRole("USER")
                     .anyRequest().permitAll()
                     .and()
